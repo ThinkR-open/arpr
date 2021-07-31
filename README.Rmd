@@ -1,0 +1,82 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# arpr
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of arpr is to provide convenience functions for programming with magrittr pipes. Conditional pipes, a string prefixer and a function to pipe the given object into a specific argument given by character name are currently supported. It is named after the dadaist Hans Arp, a friend of Rene Magritte.
+
+
+_Note that the {arpr} package was originally created by [Jirka Lewandowski](https://github.com/jirkalewandowski). The present repository is a fork to be able to continue development of this package, required for [{gitlabr}](https://github.com/statnmap/gitlabr)._  
+
+## Installation
+
+You can install the released version of arpr from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("arpr")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("statnmap/arpr")
+```
+
+## Examples
+
+```{r}
+library(arpr)
+```
+
+
+- Prefix a string of text 
+
+```{r}
+"xyz" %>%
+   prefix("abc")
+```
+
+- `iff()` applies a function if and only if test is TRUE
+  + otherwise return input value unchanged
+  + `iffn()` is if and only if test is FALSE
+
+```{r}
+x <- sample(c(1, 2, NA), 1)
+x
+x <- x %>%
+  iff(is.na, const(0))
+x
+
+x <- sample(c(1, 2, NA), 1)
+x
+x %>%
+  iff(x <= 0, function(x) { x - 2 })
+
+x <- sample(c(1, 2, NA), 1)
+x
+x %>%
+  iffn(is.na, exp)
+```
+
+-  Pipe into specific formal argument
+
+```{r}
+5L %>%
+  pipe_into("digits", format, 2.731234567)
+```
+

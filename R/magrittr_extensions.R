@@ -92,7 +92,7 @@ iffelse <- function(obj, test, true_fun, false_fun, ...) {
 pipe_into <- function(x, param_name, fun, ...) {
   x %>%
     list() %>%
-    set_names(param_name) %>%
+    rlang::set_names(param_name) %>%
     c(list(...)) %>%
     { do.call(fun, .) }
 }
