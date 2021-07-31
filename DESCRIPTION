@@ -1,0 +1,24 @@
+Package: arpr
+Type: Package
+Title: Advanced R Pipes
+Version: 0.1.1
+Authors@R: 
+    c(person(given = "Jirka",
+             family = "Lewandowski",
+             role = "aut",
+             email = "jirka.lewandowski@wzb.eu"),
+      person(given = "Sébastien",
+             family = "Rochette",
+             role = c("aut", "cre"),
+             email = "sebastien@thinkr.fr",
+             comment = c(ORCID = "0000-0002-1565-9313")))
+Description: Provides convenience functions for programming
+    with magrittr pipes. Conditional pipes, a string prefixer and a function
+    to pipe the given object into a specific argument given by character name
+    are currently supported. It is named after the dadaist Hans Arp, a friend
+    of Rene Magritte.
+Imports: magrittr
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
