@@ -11,6 +11,17 @@ usethis::use_package_doc()
 usethis::use_pipe()
 devtools::build_readme()
 
+# CI
+usethis::use_github_action_check_standard()
+usethis::use_github_action("pkgdown")
+usethis::use_testthat()
+usethis::use_test("extensions")
+usethis::use_github_action("test-coverage")
+
 # Development ----
 attachment::att_amend_desc()
 
+# Check content
+# remotes::install_github("ThinkR-open/checkhelper")
+tags <- checkhelper::find_missing_tags()
+View(tags)

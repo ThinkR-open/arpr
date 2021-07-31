@@ -15,6 +15,7 @@ knitr::opts_chunk$set(
 # arpr
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/statnmap/arpr/workflows/R-CMD-check/badge.svg)](https://github.com/statnmap/arpr/actions)
 <!-- badges: end -->
 
 The goal of arpr is to provide convenience functions for programming with magrittr pipes. Conditional pipes, a string prefixer and a function to pipe the given object into a specific argument given by character name are currently supported. It is named after the dadaist Hans Arp, a friend of Rene Magritte.

@@ -4,6 +4,8 @@
 # arpr
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/statnmap/arpr/workflows/R-CMD-check/badge.svg)](https://github.com/statnmap/arpr/actions)
 <!-- badges: end -->
 
 The goal of arpr is to provide convenience functions for programming
@@ -54,11 +56,11 @@ library(arpr)
 ``` r
 x <- sample(c(1, 2, NA), 1)
 x
-#> [1] NA
+#> [1] 1
 x <- x %>%
   iff(is.na, const(0))
 x
-#> [1] 0
+#> [1] 1
 
 x <- sample(c(1, 2, NA), 1)
 x
@@ -69,10 +71,10 @@ x %>%
 
 x <- sample(c(1, 2, NA), 1)
 x
-#> [1] NA
+#> [1] 1
 x %>%
   iffn(is.na, exp)
-#> [1] NA
+#> [1] 2.718282
 ```
 
 -   Pipe into specific formal argument
