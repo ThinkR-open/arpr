@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Apply a function if and only if test is TRUE — iff • arpr</title>
+<title>Apply a function depending on test output — iff • arpr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,12 @@
 
 
 
-<meta property="og:title" content="Apply a function if and only if test is TRUE — iff" />
-<meta property="og:description" content="otherwise return input value unchanged" />
+<meta property="og:title" content="Apply a function depending on test output — iff" />
+<meta property="og:description" content="iff returns output of the function if and only if test is TRUE.
+iffn returns output of the function if and only if test is FALSE.
+They return the original value otherwise.
+iffelse returns output of the first function if test is TRUE,
+output of the second function otherwise." />
 
 
 
@@ -111,13 +115,17 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Apply a function if and only if test is TRUE</h1>
+    <h1>Apply a function depending on test output</h1>
     <small class="dont-index">Source: <a href='https://github.com/statnmap/arpr/blob/master/R/magrittr_extensions.R'><code>R/magrittr_extensions.R</code></a></small>
     <div class="hidden name"><code>iff.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>otherwise return input value unchanged</p>
+    <p><code>iff</code> returns output of the function if and only if test is <code>TRUE</code>.
+<code>iffn</code> returns output of the function if and only if test is <code>FALSE</code>.
+They return the original value otherwise.
+<code>iffelse</code> returns output of the first function if test is <code>TRUE</code>,
+output of the second function otherwise.</p>
     </div>
 
     <pre class="usage"><span class='fu'>iff</span><span class='op'>(</span><span class='va'>obj</span>, <span class='va'>test</span>, <span class='va'>fun</span>, <span class='va'>...</span><span class='op'>)</span>
@@ -155,22 +163,33 @@
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>iffn is ... if and only if test is FALSE</p>
+    <p>Output of function <code>fun</code> applied to the original value or the
+original value, depending on the test.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://magrittr.tidyverse.org'>magrittr</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Loading required package: magrittr</span></div><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span>,<span class='cn'>NA</span><span class='op'>)</span>, <span class='fl'>1</span><span class='op'>)</span>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='va'>x</span> <span class='op'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='va'>x</span> <span class='op'>%&gt;%</span>
   <span class='fu'>iff</span><span class='op'>(</span><span class='va'>is.na</span>, <span class='fu'><a href='const.html'>const</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='va'>x</span><span class='op'>%&gt;%</span>
+</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
+<span class='va'>x</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>iff</span><span class='op'>(</span><span class='va'>is.na</span>, <span class='fu'><a href='const.html'>const</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='va'>x</span> <span class='op'>%&gt;%</span>
   <span class='fu'>iff</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;=</span> <span class='fl'>0</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span> <span class='va'>x</span> <span class='op'>-</span> <span class='fl'>2</span> <span class='op'>}</span><span class='op'>)</span>
-
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span>,<span class='cn'>NA</span><span class='op'>)</span>, <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='fl'>1</span>
+<span class='va'>x</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>iff</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;=</span> <span class='fl'>0</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span> <span class='va'>x</span> <span class='op'>-</span> <span class='fl'>2</span> <span class='op'>}</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] -3</div><div class='input'>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='cn'>NA</span>
 <span class='va'>x</span> <span class='op'>%&gt;%</span>
   <span class='fu'>iffn</span><span class='op'>(</span><span class='va'>is.na</span>, <span class='va'>exp</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] NA</div><div class='input'>
+</div><div class='output co'>#&gt; [1] NA</div><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+<span class='va'>x</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>iffn</span><span class='op'>(</span><span class='va'>is.na</span>, <span class='va'>exp</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 22026.47</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
