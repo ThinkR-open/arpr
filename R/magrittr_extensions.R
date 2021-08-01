@@ -115,7 +115,7 @@ pipe_into <- function(x, param_name, fun, ...) {
 
 #' Remove names of an object
 #'
-#' @param x object to un-name
+#' @param x object to unname
 #' @export
 #' @return x without names.
 remove_names <- function(x) {

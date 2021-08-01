@@ -12,11 +12,11 @@ Authors@R:
              role = c("aut", "cre"),
              email = "sebastien@thinkr.fr",
              comment = c(ORCID = "0000-0002-1565-9313")))
-Description: Provides convenience functions for programming with magrittr
-    pipes. Conditional pipes, a string prefixer and a function to pipe the
-    given object into a specific argument given by character name are
-    currently supported. It is named after the dadaist Hans Arp, a friend
-    of Rene Magritte.
+Description: Provides convenience functions for programming with
+    'magrittr' pipes. Conditional pipes, a string prefixer and a function
+    to pipe the given object into a specific argument given by character
+    name are currently supported. It is named after the dadaist Hans Arp,
+    a friend of Rene Magritte.
 License: GPL (>= 3)
 URL: https://github.com/statnmap/arpr
 BugReports: https://github.com/statnmap/arpr/issues

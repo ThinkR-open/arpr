@@ -6,7 +6,7 @@
 \alias{arpr-package}
 \title{arpr: Advanced R Pipes}
 \description{
-Provides convenience functions for programming with magrittr
+Provides convenience functions for programming with 'magrittr'
     pipes. Conditional pipes, a string prefixer and a function to pipe the
     given object into a specific argument given by character name are
     currently supported. It is named after the dadaist Hans Arp, a friend
