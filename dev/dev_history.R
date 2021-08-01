@@ -10,6 +10,7 @@ usethis::use_readme_rmd()
 usethis::use_package_doc()
 usethis::use_pipe()
 devtools::build_readme()
+usethis::use_roxygen_md()
 
 # CI
 usethis::use_github_action_check_standard()

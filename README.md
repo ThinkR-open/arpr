@@ -54,27 +54,32 @@ library(arpr)
     -   `iffn()` is if and only if test is FALSE
 
 ``` r
-x <- sample(c(1, 2, NA), 1)
-x
-#> [1] 1
-x <- x %>%
+x <- 1
+x %>%
   iff(is.na, const(0))
-x
 #> [1] 1
+x <- NA
+x %>%
+  iff(is.na, const(0))
+#> [1] 0
 
-x <- sample(c(1, 2, NA), 1)
-x
-#> [1] 2
+x <- 1
 x %>%
   iff(x <= 0, function(x) { x - 2 })
-#> [1] 2
-
-x <- sample(c(1, 2, NA), 1)
-x
 #> [1] 1
+x <- -1
+x %>%
+  iff(x <= 0, function(x) { x - 2 })
+#> [1] -3
+
+x <- NA
 x %>%
   iffn(is.na, exp)
-#> [1] 2.718282
+#> [1] NA
+x <- 10
+x %>%
+  iffn(is.na, exp)
+#> [1] 22026.47
 ```
 
 -   Pipe into specific formal argument

@@ -4,7 +4,7 @@
 \alias{iff}
 \alias{iffn}
 \alias{iffelse}
-\title{Apply a function if and only if test is TRUE}
+\title{Apply a function depending on test output}
 \usage{
 iff(obj, test, fun, ...)
 
@@ -25,21 +25,36 @@ iffelse(obj, test, true_fun, false_fun, ...)
 
 \item{false_fun}{function to apply when test is false}
 }
-\description{
-otherwise return input value unchanged
+\value{
+Output of function \code{fun} applied to the original value or the
+original value, depending on the test.
 }
-\details{
-iffn is ... if and only if test is FALSE
+\description{
+\code{iff} returns output of the function if and only if test is \code{TRUE}.
+\code{iffn} returns output of the function if and only if test is \code{FALSE}.
+They return the original value otherwise.
+\code{iffelse} returns output of the first function if test is \code{TRUE},
+output of the second function otherwise.
 }
 \examples{
-require(magrittr)
-x <- sample(c(1,2,NA), 1)
-x <- x \%>\%
+x <- 1
+x \%>\%
   iff(is.na, const(0))
-y <- x\%>\%
+x <- NA
+x \%>\%
+  iff(is.na, const(0))
+
+x <- 1
+x \%>\%
+  iff(x <= 0, function(x) { x - 2 })
+x <- -1
+x \%>\%
   iff(x <= 0, function(x) { x - 2 })
 
-x <- sample(c(1,2,NA), 1)
+x <- NA
+x \%>\%
+  iffn(is.na, exp)
+x <- 10
 x \%>\%
   iffn(is.na, exp)
 

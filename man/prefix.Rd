@@ -11,9 +11,12 @@ prefix(text, ...)
 
 \item{...}{goes to the front.}
 }
+\value{
+Character. Character chain with the prefix added.
+}
 \description{
 Convenience function to use with magrittr
-wraps \code{\link{paste0}}, hence vectorised as \code{\link{paste0}}
+wraps \code{\link[=paste0]{paste0()}}, hence vectorised as \code{\link[=paste0]{paste0()}}
 }
 \examples{
 require(magrittr)

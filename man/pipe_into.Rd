@@ -15,9 +15,12 @@ pipe_into(x, param_name, fun, ...)
 
 \item{...}{further arguments for fun}
 }
+\value{
+Output of \code{fun}.
+}
 \description{
 This rotates the order of the arguments such that the one named
-in param_name comes first and then calls the function.
+in \code{param_name} comes first and then calls the function.
 }
 \examples{
 require(magrittr)

@@ -1,7 +1,7 @@
 #' Prefix a string of text
 #'
 #' Convenience function to use with magrittr
-#' wraps \code{\link{paste0}}, hence vectorised as \code{\link{paste0}}
+#' wraps [paste0()], hence vectorised as [paste0()]
 #'
 #' @examples
 #' require(magrittr)
@@ -11,25 +11,38 @@
 #' @param text goes to the end, rest
 #' @param ... goes to the front.
 #' @export
+#' @return Character. Character chain with the prefix added.
 prefix <- function(text, ...) {
   paste0(..., text)
 }
 
-#' Apply a function if and only if test is TRUE
+#' Apply a function depending on test output
 #'
-#' otherwise return input value unchanged
-#'
-#' iffn is ... if and only if test is FALSE
+#' `iff` returns output of the function if and only if test is `TRUE`.
+#' `iffn` returns output of the function if and only if test is `FALSE`.
+#' They return the original value otherwise.
+#' `iffelse` returns output of the first function if test is `TRUE`,
+#' output of the second function otherwise.
 #'
 #' @examples
-#' require(magrittr)
-#' x <- sample(c(1,2,NA), 1)
-#' x <- x %>%
+#' x <- 1
+#' x %>%
 #'   iff(is.na, const(0))
-#' y <- x%>%
+#' x <- NA
+#' x %>%
+#'   iff(is.na, const(0))
+#'
+#' x <- 1
+#' x %>%
+#'   iff(x <= 0, function(x) { x - 2 })
+#' x <- -1
+#' x %>%
 #'   iff(x <= 0, function(x) { x - 2 })
 #'
-#' x <- sample(c(1,2,NA), 1)
+#' x <- NA
+#' x %>%
+#'   iffn(is.na, exp)
+#' x <- 10
 #' x %>%
 #'   iffn(is.na, exp)
 #'
@@ -38,6 +51,8 @@ prefix <- function(text, ...) {
 #' @param fun function to apply
 #' @param ... passed on to test
 #' @export
+#' @return Output of function `fun` applied to the original value or the
+#' original value, depending on the test.
 iff <- function(obj, test, fun, ...) {
   if ( (is.function(test) && test(obj)) ||
        (is.logical(test) && test) ) {
@@ -76,7 +91,7 @@ iffelse <- function(obj, test, true_fun, false_fun, ...) {
 #' Pipe into specific formal argument
 #'
 #' This rotates the order of the arguments such that the one named
-#' in param_name comes first and then calls the function.
+#' in `param_name` comes first and then calls the function.
 #'
 #' @param x value to be piped into fun
 #' @param param_name name of the argument that x should be assigned to
@@ -89,6 +104,7 @@ iffelse <- function(obj, test, true_fun, false_fun, ...) {
 #'   pipe_into("digits", format, 2.731234567)
 #'
 #' @export
+#' @return Output of `fun`.
 pipe_into <- function(x, param_name, fun, ...) {
   x %>%
     list() %>%
@@ -101,6 +117,7 @@ pipe_into <- function(x, param_name, fun, ...) {
 #'
 #' @param x object to un-name
 #' @export
+#' @return x without names.
 remove_names <- function(x) {
   names(x) <- NULL
   x
@@ -111,6 +128,7 @@ remove_names <- function(x) {
 #' @export
 #' @param x input
 #' @param ... passed on to browser()
+#' @return Used for side effect. Open a browser inside the pipe workflow.
 browse_r <- function(x, ...) {
   print(x)
   browser(skipCalls = 2, ...)

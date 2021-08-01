@@ -11,6 +11,9 @@ browse_r(x, ...)
 
 \item{...}{passed on to browser()}
 }
+\value{
+Used for side effect. Open a browser inside the pipe workflow.
+}
 \description{
 browser() in a magrittr pipe
 }
